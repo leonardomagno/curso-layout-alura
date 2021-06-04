@@ -10,7 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import alura.com.br.R;
 import alura.com.br.model.Pacote;
@@ -57,10 +61,22 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
 
         TextView dias = viewCriada.findViewById(R.id.item_pacote_dias);
-        dias.setText(pacote.getDias() + "Dias");
+        int quantidadeDeDias = pacote.getDias();
+        String diasEmTexto = "";
+        if (quantidadeDeDias > 1) {
+            diasEmTexto = quantidadeDeDias + " Dias";
+        } else {
+            diasEmTexto = quantidadeDeDias + " Dia";
+        }
+        dias.setText(diasEmTexto);
 
         TextView preco = viewCriada.findViewById(R.id.item_pacote_preco);
-        preco.setText(pacote.getPreco().toString());
+        BigDecimal precoDoPacote = pacote.getPreco();
+        NumberFormat formatoBrasileiro = DecimalFormat.getCurrencyInstance(new Locale("pt", "br"));
+        String moedaBrasileira = formatoBrasileiro
+                .format(precoDoPacote)
+                .replace("R$", "R$ ");
+        preco.setText(moedaBrasileira);
 
         return viewCriada;
     }
