@@ -14,7 +14,7 @@ import java.util.List;
 import alura.com.br.util.DiasUtil;
 import alura.com.br.util.MoedaUtil;
 import alura.com.br.R;
-import alura.com.br.util.ResourcesUtil;
+import alura.com.br.util.ResourceUtil;
 import alura.com.br.model.Pacote;
 
 public class ListaPacotesAdapter extends BaseAdapter {
@@ -70,7 +70,7 @@ public class ListaPacotesAdapter extends BaseAdapter {
 
     private void mostraImagem(View viewCriada, Pacote pacote) {
         ImageView imagem = viewCriada.findViewById(R.id.item_pacote_imagem);
-        Drawable drawableImagemPacote = ResourcesUtil.devolveDrawable(context, pacote.getImagem());
+        Drawable drawableImagemPacote = ResourceUtil.devolveDrawable(context, pacote.getImagem());
         imagem.setImageDrawable(drawableImagemPacote);
     }
 
